@@ -34,11 +34,5 @@ jobs:
       - name: Pull image from Docker Hub
         run: sudo docker pull sridzar007/node-backend:latest
 
-      - name: Stop existing container (if exists)
-        run: sudo docker stop nodejs-app-container || true
-
-      - name: Remove existing container (if exists)
-        run: sudo docker rm nodejs-app-container || true
-
       - name: Run Docker container
         run: sudo docker run -d -p 4000:4000 --name nodejs-app-container sridzar007/node-backend:latest

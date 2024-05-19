@@ -35,4 +35,5 @@ jobs:
         run: sudo docker pull sridzar007/node-backend:latest
 
       - name: Run Docker container
-        run: sudo docker run -d -p 4000:4000 
+        run: sudo docker run -d -p 4000:4000 sridzar007/node-backend:latest
+ 

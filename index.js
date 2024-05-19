@@ -24,9 +24,8 @@ app.use(cors(corsOptions));
 // app.use('/api/properties', propertyRoutes);
 
 // Connect to MongoDB
-const password = encodeURIComponent(process.emv.MONGO_PASSWORD.trim())
-mongoose.connect('MONGODB_URI =`mongodb+srv://sridhar:${password}@cluster0.03add.mongodb.net/presidio-v1?retryWrites=true&w=majority&appName=Cluster0`
-', {
+// const password = encodeURIComponent(process.env.MONGO_PASSWORD.trim())
+mongoose.connect(`mongodb+srv://sridhar:sridhar@cluster0.03add.mongodb.net/presidio-v1?retryWrites=true&w=majority&appName=Cluster0`, {
 
 })
 .then(() => console.log('MongoDB connected'))

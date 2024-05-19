@@ -28,17 +28,17 @@ jobs:
         run: docker push sridzar007/node-backend:latest
 
   deploy:
-  needs: build
-  runs-on: self-hosted
-  steps:
-    - name: Stop existing Docker container (if any)
-      run: sudo docker stop nodejs-app-container || true
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Stop existing Docker container (if any)
+        run: sudo docker stop nodejs-app-container || true
 
-    - name: Remove existing Docker container (if any)
-      run: sudo docker rm nodejs-app-container || true
+      - name: Remove existing Docker container (if any)
+        run: sudo docker rm nodejs-app-container || true
 
-    - name: Pull image from Docker Hub
-      run: sudo docker pull sridzar007/node-backend:latest
+      - name: Pull image from Docker Hub
+        run: sudo docker pull sridzar007/node-backend:latest
 
-    - name: Run Docker container
-      run: sudo docker run -d -p 4000:4000 --name nodejs-app-container sridzar007/node-backend:latest
+      - name: Run Docker container
+        run: sudo docker run -d -p 4000:4000 --name nodejs-app-container sridzar007/node-backend:latest

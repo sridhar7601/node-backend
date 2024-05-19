@@ -31,11 +31,6 @@ jobs:
     needs: build
     runs-on: self-hosted
     steps:
-      
-
-      - name: Remove existing Docker container
-        run: sudo docker stop nodejs-app-container && sudo docker rm nodejs-app-container
-
 
       - name: Pull image from Docker Hub
         run: sudo docker pull sridzar007/node-backend:latest

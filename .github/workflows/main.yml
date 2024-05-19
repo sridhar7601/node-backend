@@ -1,0 +1,38 @@
+name: Deploy Node Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Debug Docker Username
+        run: echo ${{ secrets.DOCKER_USERNAME }}
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker image
+        run: docker build -t sridzar007/node-backend .
+
+      - name: Publish image to Docker Hub
+        run: docker push sridzar007/node-backend:latest
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from Docker Hub
+        run: sudo docker pull sridzar007/node-backend:latest
+
+      - name: Run Docker container
+        run: sudo docker run -d -p 4000:4000 --name nodejs-app-container sridzar007/node-backend:latest

@@ -1,6 +1,6 @@
 FROM node:alpine3.18
 WORKDIR /app
-COPY ./server/package.json .
+COPY package.json ./
 RUN echo "$PWD"
 RUN npm install
 COPY . . 

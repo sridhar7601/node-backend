@@ -3,6 +3,6 @@ WORKDIR /app
 COPY ./server/package.json .
 RUN echo "$PWD"
 RUN npm install
-COPY ./server/ . 
+COPY . . 
 EXPOSE 4000
 CMD ["npm","run","start"]

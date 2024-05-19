@@ -7,7 +7,7 @@ const cors = require('cors'); // Add this line to import the cors package
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 4000;
 
 // Middleware to parse JSON
 app.use(express.json());
@@ -24,7 +24,9 @@ app.use(cors(corsOptions));
 // app.use('/api/properties', propertyRoutes);
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
+const password = encodeURIComponent(process.emv.MONGO_PASSWORD.trim())
+mongoose.connect('MONGODB_URI =`mongodb+srv://sridhar:${password}@cluster0.03add.mongodb.net/presidio-v1?retryWrites=true&w=majority&appName=Cluster0`
+', {
 
 })
 .then(() => console.log('MongoDB connected'))

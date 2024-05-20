@@ -26,3 +26,7 @@ A backend app with api's needed for handling rentals and adding deleting or upda
 
 ## Hosted in AWS EC2 - Link for the same
 -  http://34.204.63.196:4000/api
+
+## Docker Pull
+``` bash
+docker pull sridzar007/node-backend:latest

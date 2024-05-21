@@ -4,11 +4,17 @@ const dotenv = require('dotenv');
 const cors = require('cors'); // Add this line to import the cors package
 const authRoutes = require('./routes/auth');
 const propertyRoutes = require('./routes/property');
+const { createServer } = require('http');
+const socketInstance = require('./routes/socketio.js')
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 4000;
+
+const httpServer = createServer(app);
+httpServer.listen(process.env.SOCKET_PORT || 4040);
+socketInstance.connectSocket(httpServer);
 
 // Middleware to parse JSON
 app.use(express.json());

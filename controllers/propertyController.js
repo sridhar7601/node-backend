@@ -1,4 +1,5 @@
 const Property = require('../models/Property');
+const socketInstance = require('../routes/socketio.js')
 
 // Add a new property
 exports.addProperty = async (req, res) => {
@@ -101,8 +102,10 @@ exports.updateLikeCount = async (req, res) => {
 
     property.likes = increment ? property.likes + 1 : property.likes - 1;
     await property.save();
-
-    res.json({ likes: property.likes });
+//Socket
+const socket = await socketInstance.socketConnection();
+socket.broadCastEvent("like", { likes: property.likes,property :property._id  });
+    res.json({ likes: property.likes});
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
